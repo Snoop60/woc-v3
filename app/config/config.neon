@@ -1,0 +1,51 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+parameters:
+
+
+php:
+	date.timezone: Europe/Prague
+	# zlib.output_compression: yes
+
+
+nette:
+	application:
+		errorPresenter: Error
+		mapping:
+			*: Mov\*Module\Presenters\*Presenter
+
+	database:
+		dsn: 'mysql:host=mysql.hicoria.com;dbname=mysql_852'
+		user: 'mysql_852'
+		password: 'LZmj6Gsc'
+
+	session:
+		expiration: 14 days
+
+
+services:
+	- Mov\RouterFactory
+	authenticator: Security\Authenticator
+	articleModel: Models\Article
+	versionModel: Models\Version
+	fileModel: Models\File
+	userModel: Models\User
+	commentsModel: Models\Comments
+
+	authorizator:
+			class: Nette\Security\Permission
+			setup: 
+				- addRole('guest')
+				- addRole('editor')
+				- addRole('admin')
+				- addResource('Homepage:Default')
+				- addResource('Admin:Pages')
+				- addResource('Admin:Users')
+				- addResource('Admin:Task')
+				- addResource('Admin:News')
+				- allow('admin')
+	router: @Mov\RouterFactory::createRouter

@@ -1,0 +1,15 @@
+{* Latte template *}
+{block content}
+<h2 n:block=title>Podpora</h2><a n:href="Support:Create" ><input type="button" class="tlacitko upravit" value="Nový Ticket"></a>
+<hr>
+<div id="posts">
+    {if count($tikets)}
+        {foreach $tikets as $tiket}
+			<p><a n:href="Support:show $tiket['id']" ><input type="button" class="tlacitko otevrit" value="Otevřít"></a>&nbsp; &nbsp;<span style="font-size:16px;">&nbsp;[{$tiket['stav']}]&nbsp;&nbsp; {$tiket['id']}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b>{$tiket['title']}</b></span></p>
+        {/foreach}
+		<a href="../Page/about.latte"></a>
+    {else}
+        Zatím nebyl napsán žádný tiket.
+    {/if}
+</div>
+{/block}

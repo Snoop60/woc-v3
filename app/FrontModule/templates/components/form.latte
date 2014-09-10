@@ -1,0 +1,8 @@
+{form $form}
+<table>
+<tr n:foreach="$form->controls as $input" n:class="$input->required ? required">
+	<th>{label $input /}</th>
+	<td>{input $input} <span class=error n:ifcontent>{$input->error}</span></td>
+</tr>
+</table>
+{/form}

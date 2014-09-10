@@ -1,0 +1,20 @@
+	{block content}
+<div id="help-nav">
+			<a n:href="blog:default">Blog</a> &gt; přehled
+		</div>
+		
+		<h6 class="red">Akce</h6>		
+<a n:href="Blog:new" ><input type="button" class="tlacitko administrace" value="Napsat nový"></a></p>
+<h4>Zvolte článek :</h4>
+		{foreach $posts as $post}
+			<p><a n:href="Blog:edit $post['id']" ><input type="button" class="tlacitko otevrit" value="Upravit"></a> &nbsp;<span style="font-size:16px;">{$post['id']}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{$post['title']}</span></p>
+		{/foreach}
+
+                </div>
+                <!-- // #main -->
+                
+                <div class="clear"></div>
+            </div>
+            <!-- // #container -->
+        </div>
+{/block}

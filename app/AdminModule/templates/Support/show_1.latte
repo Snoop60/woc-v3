@@ -1,0 +1,28 @@
+{block content}
+<h2 n:block=title>Tiket <b>#{$tikets['id']}</b> |{$tikets['title']|truncate:50}</h2>
+    <small>Přidáno dne : {$tikets['date']|date} . Uživatelem {$tikets['author']} , tiket je ve stavu {$tikets['stav']}.</small>
+    <p style="font-size:16px;">{$tikets['body']} .</p>
+ 
+<h3>Komentáře:</h3>
+    {if $comments}
+        {foreach $comments as $comment}
+            <p>{$comment['author']} napsal :</p>
+			<p>{$comment['body']}</p>
+            <small>V {$comment['date']|date}</small>
+            <hr>
+        {/foreach}
+    {else}
+        Nebyl napsán žádná odpověď. Buďte první! I ty můžeš pomoci !
+    {/if}
+	
+	{if $tikets['stav']==='otevřen'}
+			{control commentForm}
+		{elseif $tikets['stav']==='vyřešen'}
+			<center><span style="color: #9C2525 ;font-size:16px;"><b>Podpora změnila stav tiketu na : vyřešeno .</b></span></center>
+		{elseif $tikets['stav']==='uzavřen'}
+			<center><span style="color: #9C2525 ;font-size:16px;"><b>Podpora změnila stav tiketu na : uzavřeno .</b></span></center>
+		{else}
+			<center><b>Podpora uzavřela tiket</b></center>
+	{/if}
+	
+{/block}

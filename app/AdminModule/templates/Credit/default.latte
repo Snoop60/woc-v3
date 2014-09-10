@@ -1,0 +1,13 @@
+{block content}
+<div id="help-nav">
+			<a n:href="users:default">Uživatelé</a> &gt; přehled
+		</div>
+		
+		<h6 class="red">Akce</h6>
+		<p class="red">Žádná akce není dostupná</p>
+		<h4>Zvolte uživatele :</h4>
+{foreach $users as $user}
+	<p><a n:href=":Admin:Credit:edit $user['id']" ><input type="button" class="tlacitko otevrit" value="Přidat / odebrat"></a>
+		&nbsp;<span style="font-size:16px;">[Coins : {$user['balance']}]&nbsp;<span style="font-size:16px;">{$user['username']}</span></p>
+		{/foreach} 
+{/block}

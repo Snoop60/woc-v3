@@ -1,0 +1,20 @@
+	{block content}
+<div id="help-nav">
+			<a n:href="support:default">Support</a> &gt; přehled
+		</div>
+		
+		<h6 class="red">Akce</h6>		
+		<p class="red">Žádná akce není dostupná</p>
+<h4>Zvolte tiket :</h4>
+		{foreach $tikets as $tiket}
+			<p><a n:href="support:show $tiket['id']" ><input type="button" class="tlacitko otevrit" value="Otevřít"></a>&nbsp;<a n:href="support:edit $tiket['id']" ><input type="button" class="tlacitko otevrit" value="Akce"></a> &nbsp;&nbsp;<span style="font-size:16px;">&nbsp;&nbsp;{$tiket['id']}&nbsp;&nbsp;[{$tiket['admin']}]&nbsp; [{$tiket['stav']}] &nbsp; &nbsp; &nbsp; &nbsp;<b>{$tiket['title']}</b></span></p>
+		{/foreach}
+
+                </div>
+                <!-- // #main -->
+                
+                <div class="clear"></div>
+            </div>
+            <!-- // #container -->
+        </div>
+{/block}
