@@ -9,43 +9,19 @@ parameters:
 
 php:
 	date.timezone: Europe/Prague
-	# zlib.output_compression: yes
 
 
 nette:
 	application:
 		errorPresenter: Error
 		mapping:
-			*: Mov\*Module\Presenters\*Presenter
-
-	database:
-		dsn: 'mysql:host=mysql.hicoria.com;dbname=mysql_852'
-		user: 'mysql_852'
-		password: 'LZmj6Gsc'
+			*: App\*Module\Presenters\*Presenter
 
 	session:
 		expiration: 14 days
 
 
 services:
-	- Mov\RouterFactory
-	authenticator: Security\Authenticator
-	articleModel: Models\Article
-	versionModel: Models\Version
-	fileModel: Models\File
-	userModel: Models\User
-	commentsModel: Models\Comments
-
-	authorizator:
-			class: Nette\Security\Permission
-			setup: 
-				- addRole('guest')
-				- addRole('editor')
-				- addRole('admin')
-				- addResource('Homepage:Default')
-				- addResource('Admin:Pages')
-				- addResource('Admin:Users')
-				- addResource('Admin:Task')
-				- addResource('Admin:News')
-				- allow('admin')
-	router: @Mov\RouterFactory::createRouter
+	- App\Model\UserManager
+	- App\RouterFactory
+	router: @App\RouterFactory::createRouter
